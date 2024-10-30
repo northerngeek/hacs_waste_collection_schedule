@@ -1980,11 +1980,11 @@
       },
       "args_data_umweltprofis_at": {
         "title": "Configure Source",
-        "description": "Configure your service provider. More details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/data_umweltprofis_at.md.",
+        "description": "Configure your service provider. \n\nYou need to generate your personal XML link before you can start using this source. Go to [https://data.umweltprofis.at/opendata/AppointmentService/index.aspx](https://data.umweltprofis.at/opendata/AppointmentService/index.aspx) and fill out the form. At the end at step 6 you get a link to a XML file. Copy this link use it as xmlurl parameter.\n\nMore details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/data_umweltprofis_at.md.",
         "data": {
           "calendar_title": "Calendar Title",
-          "url": "Url",
-          "xmlurl": "Xmlurl"
+          "url": "URL (Deprecated do not use)",
+          "xmlurl": "XML URL"
         },
         "data_description": {
           "calendar_title": "A more readable, or user-friendly, name for the waste calendar. If nothing is provided, the name returned by the source will be used."
@@ -1992,11 +1992,11 @@
       },
       "reconfigure_data_umweltprofis_at": {
         "title": "Reconfigure Source",
-        "description": "Configure your service provider. More details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/data_umweltprofis_at.md.",
+        "description": "Configure your service provider. \n\nYou need to generate your personal XML link before you can start using this source. Go to [https://data.umweltprofis.at/opendata/AppointmentService/index.aspx](https://data.umweltprofis.at/opendata/AppointmentService/index.aspx) and fill out the form. At the end at step 6 you get a link to a XML file. Copy this link use it as xmlurl parameter.\n\nMore details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/data_umweltprofis_at.md.",
         "data": {
           "calendar_title": "Calendar Title",
-          "url": "Url",
-          "xmlurl": "Xmlurl"
+          "url": "URL (Deprecated do not use)",
+          "xmlurl": "XML URL"
         },
         "data_description": {}
       },
@@ -7657,6 +7657,48 @@
         },
         "data_description": {}
       },
+      "args_ics_sds_schwerin_de": {
+        "title": "Configure Source",
+        "description": "Configure your service provider. \n\n- Visit https://www.sds-schwerin.de/abfall-strassenreinigung/entsorgungskalender/ and select your location.  \n- Click on `Exportieren iCal` and copy the link below `URL in Kalender-App einbinden`\n- Use this link as `url` parameter.\n- Rplace the year in the URL with '&#123;%Y&#125;', which will be replaced by the current year.\n\n\nMore details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/ics/sds_schwerin_de.md.",
+        "data": {
+          "calendar_title": "Calendar Title",
+          "file": "File",
+          "headers": "Headers",
+          "method": "Method",
+          "offset": "Offset",
+          "params": "Parameters",
+          "regex": "Regex",
+          "split_at": "Split At",
+          "title_template": "Title Template",
+          "url": "Url",
+          "verify_ssl": "Verify Ssl",
+          "version": "Version",
+          "year_field": "Year Field"
+        },
+        "data_description": {
+          "calendar_title": "A more readable, or user-friendly, name for the waste calendar. If nothing is provided, the name returned by the source will be used."
+        }
+      },
+      "reconfigure_ics_sds_schwerin_de": {
+        "title": "Reconfigure Source",
+        "description": "Configure your service provider. \n\n- Visit https://www.sds-schwerin.de/abfall-strassenreinigung/entsorgungskalender/ and select your location.  \n- Click on `Exportieren iCal` and copy the link below `URL in Kalender-App einbinden`\n- Use this link as `url` parameter.\n- Rplace the year in the URL with '&#123;%Y&#125;', which will be replaced by the current year.\n\n\nMore details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/ics/sds_schwerin_de.md.",
+        "data": {
+          "calendar_title": "Calendar Title",
+          "file": "File",
+          "headers": "Headers",
+          "method": "Method",
+          "offset": "Offset",
+          "params": "Parameters",
+          "regex": "Regex",
+          "split_at": "Split At",
+          "title_template": "Title Template",
+          "url": "Url",
+          "verify_ssl": "Verify Ssl",
+          "version": "Version",
+          "year_field": "Year Field"
+        },
+        "data_description": {}
+      },
       "args_sector27_de": {
         "title": "Configure Source",
         "description": "Configure your service provider. More details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/sector27_de.md.",
@@ -11026,6 +11068,48 @@
           "municipality": "Municipality",
           "service_provider": "Service Provider",
           "street": "Street"
+        },
+        "data_description": {}
+      },
+      "args_ics_seon_ch": {
+        "title": "Configure Source",
+        "description": "Configure your service provider. \n\n- Go to https://www.seon.ch/verwaltung/dienstleistungen.html/21/service/370\n- Click on `Entsorgungskalender Google` to get a ical link. If the button is broken use the `URL in Zwichenablage kopieren` button.\n- Replace the `url` in the example configuration with this link.\n\n\nMore details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/ics/seon_ch.md.",
+        "data": {
+          "calendar_title": "Calendar Title",
+          "file": "File",
+          "headers": "Headers",
+          "method": "Method",
+          "offset": "Offset",
+          "params": "Parameters",
+          "regex": "Regex",
+          "split_at": "Split At",
+          "title_template": "Title Template",
+          "url": "Url",
+          "verify_ssl": "Verify Ssl",
+          "version": "Version",
+          "year_field": "Year Field"
+        },
+        "data_description": {
+          "calendar_title": "A more readable, or user-friendly, name for the waste calendar. If nothing is provided, the name returned by the source will be used."
+        }
+      },
+      "reconfigure_ics_seon_ch": {
+        "title": "Reconfigure Source",
+        "description": "Configure your service provider. \n\n- Go to https://www.seon.ch/verwaltung/dienstleistungen.html/21/service/370\n- Click on `Entsorgungskalender Google` to get a ical link. If the button is broken use the `URL in Zwichenablage kopieren` button.\n- Replace the `url` in the example configuration with this link.\n\n\nMore details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/ics/seon_ch.md.",
+        "data": {
+          "calendar_title": "Calendar Title",
+          "file": "File",
+          "headers": "Headers",
+          "method": "Method",
+          "offset": "Offset",
+          "params": "Parameters",
+          "regex": "Regex",
+          "split_at": "Split At",
+          "title_template": "Title Template",
+          "url": "Url",
+          "verify_ssl": "Verify Ssl",
+          "version": "Version",
+          "year_field": "Year Field"
         },
         "data_description": {}
       },
