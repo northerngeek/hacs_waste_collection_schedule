@@ -10,20 +10,20 @@ waste_collection_schedule:
     sources:
     - name: sefton_gov_uk
       args:
-        Postcode: Postcode
-        Streetname: Streetname
-        House Number Or Name: houseNumberOrName
+        postcode: Postcode
+        streetname: Streetname
+        house_number_or_name: House number or name
 ```
 
 ### Configuration Variables
 
-**Postcode**  
+**postcode**  
 *(string) (required)*
 
-**Streetname**
+**streetname**
 *(string) (required)*
 
-**House Name or Number**
+**house_number_or_name**
 *(string) (required)*
 
 ## Example
@@ -33,9 +33,9 @@ waste_collection_schedule:
     sources:
     - name: sefton_gov_uk
       args:
-        Postcode: "L20 6GF"
-        Streetname: "Ken Mews"
-        houseNumberOrName: "1"
+        postcode: "L20 6GF"
+        streetname: "Ken Mews"
+        house_number_or_name: "1"
 ```
 
 ## How to find the values for arguments above

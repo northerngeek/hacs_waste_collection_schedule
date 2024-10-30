@@ -8,9 +8,9 @@ TITLE = "Sefton Council" # Title will show up in README.md and info.md
 DESCRIPTION = "Source for Sefton Council, UK"  # Describe your source
 URL = "https://www.sefton.gov.uk/"  # Insert url to service homepage. URL will show up in README.md and info.md
 TEST_CASES = {  # Insert arguments for test cases to be used by test_sources.py script
-    "Issue2369": {"houseNumberOrName": "1", "Streetname": "Ken Mews", "Postcode": "L20 6GF"},
-    "Housename": {"houseNumberOrName": "Gladstone House", "Streetname": "Rosemary Lane", "Postcode": "L37 3JB"},
-    "Issue2496": {"houseNumberOrName": "22", "Streetname": "Elton Avenue", "Postcode": "L23 8UW"}
+    "Issue2369": {"house_number_or_name": "1", "Streetname": "Ken Mews", "Postcode": "L20 6GF"},
+    "Housename": {"house_number_or_name": "Gladstone House", "Streetname": "Rosemary Lane", "Postcode": "L37 3JB"},
+    "Issue2496": {"house_number_or_name": "22", "Streetname": "Elton Avenue", "Postcode": "L23 8UW"}
 }
 
 API_URL = "https://www.sefton.gov.uk/bins-and-recycling/bins-and-recycling/when-is-my-bin-collection-day/"
@@ -31,9 +31,9 @@ HOW_TO_GET_ARGUMENTS_DESCRIPTION = { # Optional dictionary to describe how to ge
 
 PARAM_DESCRIPTIONS = { # Optional dict to describe the arguments, will be shown in the GUI configuration below the respective input field
     "en": {
-        "houseNumberOrName": "House name or number",
-        "Streetname": "Street name",
-        "Postcode": "Postcode"
+        "house_number_or_name": "House name or number",
+        "streetname": "Street name",
+        "postcode": "Postcode"
     }
 }
 
@@ -41,10 +41,10 @@ PARAM_DESCRIPTIONS = { # Optional dict to describe the arguments, will be shown 
 #### End of arguments affecting the configuration GUI ####
 
 class Source:
-    def __init__(self, houseNumberOrName:str | int, Streetname:str, Postcode:str):  # argX correspond to the args dict in the source configuration
-        self._houseNumberOrName = houseNumberOrName.upper()
-        self._Streetname = Streetname
-        self._Postcode = Postcode
+    def __init__(self, house_number_or_name:str | int, streetname:str, postcode:str):  # argX correspond to the args dict in the source configuration
+        self._house_number_or_name = str(house_number_or_name).upper()
+        self._streetname = streetname
+        self._postcode = postcode
 
     def fetch(self) -> list[Collection]:
 
@@ -54,8 +54,8 @@ class Source:
             soup = BeautifulSoup(request.content, 'html.parser')
             hidden = soup.find_all("input", {'type':'hidden'}, limit=2)
             payload = {x["name"]: x["value"] for x in hidden}
-            payload['Postcode'] = self._Postcode
-            payload['Streetname'] = self._Streetname
+            payload['Postcode'] = self._postcode
+            payload['Streetname'] = self._streetname
             request = sess.post('https://www.sefton.gov.uk/bins-and-recycling/bins-and-recycling/when-is-my-bin-collection-day/', data=payload)
             #We should now have the page displaying the select list for addresses, parse again to find the form elements we need.
             soup = BeautifulSoup(request.content, 'html.parser')
@@ -64,9 +64,11 @@ class Source:
             payload['action'] = 'Select'
             option_tags = soup.select('select option')
             for option in option_tags:
-                if option.text.upper().strip().startswith(self._houseNumberOrName):
+                if option.text.upper().strip().startswith(self._house_number_or_name):
                     payload['selectedValue'] = option['value']
                     break
+            if 'selectedValue' not in payload:
+                raise SourceArgumentNotFoundWithSuggestions("houseNumberOrName", self._house_number_or_name,[option.text.strip() for option in option_tags])
             request = sess.post('https://www.sefton.gov.uk/bins-and-recycling/bins-and-recycling/when-is-my-bin-collection-day/', data=payload)
             soup = BeautifulSoup(request.content, 'html.parser')
             tables = soup.find_all('table')
